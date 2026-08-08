@@ -1,3 +1,4 @@
+import React from 'react';
 import { formatRupees } from "../utils/format.js";
 
 function ResultTable({ result }) {

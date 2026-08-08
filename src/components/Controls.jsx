@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-function Controls({ onConsolidate, onReset }) {
+function Controls({ onConsolidate, onReset, onClearAll }) {
   return (
     <div className="controls">
       <button onClick={onConsolidate}>Consolidate</button>
