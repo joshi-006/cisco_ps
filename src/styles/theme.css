@@ -143,6 +143,17 @@ td button:hover {
   color: #fff;
 }
 
+.add-order {
+  margin-top: 1rem;
+  background: transparent;
+  color: var(--color-accent);
+  border: 1px dashed var(--color-accent);
+}
+
+.add-order:hover {
+  background: rgba(13, 110, 253, 0.08);
+}
+
 .controls {
   display: flex;
   gap: 0.75rem;

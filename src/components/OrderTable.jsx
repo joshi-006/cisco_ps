@@ -41,7 +41,9 @@ function OrderTable({ orders, onOrdersChange, onAddOrder }) {
           ))}
         </tbody>
       </table>
-      <button onClick={onAddOrder}>Add Order</button>
+      <button className="add-order" onClick={onAddOrder}>
+        Add Order
+      </button>
     </div>
   );
 }

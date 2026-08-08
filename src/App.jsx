@@ -22,6 +22,19 @@ function App() {
     setError(null);
   };
 
+  const handleAddOrder = () => {
+    const newOrder = {
+      uid: `u${Date.now()}`,
+      orderId: '',
+      member: '',
+      item: '',
+      size: '',
+      colour: '',
+      quantity: '',
+    };
+    handleOrdersChange([...orders, newOrder]);
+  };
+
   const handleConsolidate = () => {
     const validationError = validateOrders(orders);
     if (validationError) {
@@ -33,28 +46,19 @@ function App() {
       setError(null);
     }
   };
+
   const handleReset = () => {
-       setOrders(getBuiltInOrders());
-       setResult(null);
-       setError(null);
+    setOrders(getBuiltInOrders());
+    setResult(null);
+    setError(null);
   };
+
   const handleClearAll = () => {
-       setOrders([]);
-       setResult(null);
-       setError(null);
+    setOrders([]);
+    setResult(null);
+    setError(null);
   };
-  const handleAddOrder = () => {
-       const newOrder = {
-         uid: `u${Date.now()}`,
-         orderId: '',
-         member: '',
-         item: '',
-         size: '',
-         colour: '',
-         quantity: '',
-       };
-       updateOrders([...orders, newOrder]);
-  };
+
   return (
     <>
       <h1 className="app-title">Club Merch Order Consolidator</h1>
@@ -65,16 +69,16 @@ function App() {
       <section className="section">
         <h2>Member Orders</h2>
         <OrderTable
-       orders={orders}
-       onOrdersChange={handleOrdersChange}
-       onAddOrder={handleAddOrder}
-     />
+          orders={orders}
+          onOrdersChange={handleOrdersChange}
+          onAddOrder={handleAddOrder}
+        />
       </section>
       <Controls
-       onConsolidate={handleConsolidate}
-       onReset={handleReset}
-       onClearAll={handleClearAll}
-     />
+        onConsolidate={handleConsolidate}
+        onReset={handleReset}
+        onClearAll={handleClearAll}
+      />
       {error && <ErrorBanner error={error} />}
       {result && (
         <>
