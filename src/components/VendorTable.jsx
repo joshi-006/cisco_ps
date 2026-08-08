@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { CATALOG } from '../data/vendorCatalog.js';
+import { formatRupees } from '../utils/format.js';
 
 function VendorTable() {
   return (
@@ -22,7 +23,7 @@ function VendorTable() {
             <td>{variant.item}</td>
             <td>{variant.size}</td>
             <td>{variant.colour}</td>
-            <td>{variant.unitPrice}</td>
+            <td>{formatRupees(variant.unitPrice)}</td>
           </tr>
         ))}
       </tbody>

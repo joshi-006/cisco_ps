@@ -43,6 +43,18 @@ function App() {
        setResult(null);
        setError(null);
   };
+  const handleAddOrder = () => {
+       const newOrder = {
+         uid: `u${Date.now()}`,
+         orderId: '',
+         member: '',
+         item: '',
+         size: '',
+         colour: '',
+         quantity: '',
+       };
+       updateOrders([...orders, newOrder]);
+  };
   return (
     <>
       <h1 className="app-title">Club Merch Order Consolidator</h1>
@@ -52,7 +64,11 @@ function App() {
       </section>
       <section className="section">
         <h2>Member Orders</h2>
-        <OrderTable orders={orders} onOrdersChange={handleOrdersChange} />
+        <OrderTable
+       orders={orders}
+       onOrdersChange={handleOrdersChange}
+       onAddOrder={handleAddOrder}
+     />
       </section>
       <Controls
        onConsolidate={handleConsolidate}

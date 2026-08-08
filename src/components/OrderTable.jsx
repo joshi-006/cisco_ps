@@ -3,7 +3,7 @@
 import React from 'react';
 import OrderRow from './OrderRow.jsx';
 
-function OrderTable({ orders, onOrdersChange }) {
+function OrderTable({ orders, onOrdersChange, onAddOrder }) {
   const handleOrderChange = (updatedOrder) => {
     const updatedOrders = orders.map((order) =>
       order.uid === updatedOrder.uid ? updatedOrder : order
@@ -17,29 +17,32 @@ function OrderTable({ orders, onOrdersChange }) {
   };
 
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>Order ID</th>
-          <th>Member</th>
-          <th>Item</th>
-          <th>Size</th>
-          <th>Colour</th>
-          <th>Quantity</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        {orders.map((order) => (
-          <OrderRow
-            key={order.uid}
-            order={order}
-            onChange={handleOrderChange}
-            onDelete={handleOrderDelete}
-          />
-        ))}
-      </tbody>
-    </table>
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th>Order ID</th>
+            <th>Member</th>
+            <th>Item</th>
+            <th>Size</th>
+            <th>Colour</th>
+            <th>Quantity</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {orders.map((order) => (
+            <OrderRow
+              key={order.uid}
+              order={order}
+              onChange={handleOrderChange}
+              onDelete={handleOrderDelete}
+            />
+          ))}
+        </tbody>
+      </table>
+      <button onClick={onAddOrder}>Add Order</button>
+    </div>
   );
 }
 
