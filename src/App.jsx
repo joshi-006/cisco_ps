@@ -33,13 +33,16 @@ function App() {
       setError(null);
     }
   };
-
   const handleReset = () => {
-    setOrders(getBuiltInOrders());
-    setResult(null);
-    setError(null);
+       setOrders(getBuiltInOrders());
+       setResult(null);
+       setError(null);
   };
-
+  const handleClearAll = () => {
+       setOrders([]);
+       setResult(null);
+       setError(null);
+  };
   return (
     <>
       <h1 className="app-title">Club Merch Order Consolidator</h1>
@@ -51,7 +54,11 @@ function App() {
         <h2>Member Orders</h2>
         <OrderTable orders={orders} onOrdersChange={handleOrdersChange} />
       </section>
-      <Controls onConsolidate={handleConsolidate} onReset={handleReset} />
+      <Controls
+       onConsolidate={handleConsolidate}
+       onReset={handleReset}
+       onClearAll={handleClearAll}
+     />
       {error && <ErrorBanner error={error} />}
       {result && (
         <>

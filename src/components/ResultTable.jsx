@@ -1,13 +1,26 @@
-// ResultTable.jsx
-
-import React from 'react';
+import { formatRupees } from "../utils/format.js";
 
 function ResultTable({ result }) {
-  if (!result || result.rows.length === 0) {
-    return <p>No consolidated results available. Please click Consolidate to view the vendor summary.</p>;
+  // Consolidate has not been run yet
+  if (result === null) {
+    return (
+      <p>Run Consolidate to view the vendor summary.</p>
+    );
   }
 
-  const maxUnits = Math.max(...result.rows.map((row) => row.units));
+  // Consolidation was successful, but there are no orders
+  if (result.rows.length === 0) {
+    return (
+      <div>
+        <p>Total Units: 0</p>
+        <p>Total Revenue: {formatRupees(0)}</p>
+      </div>
+    );
+  }
+
+  const maxUnits = Math.max(
+    ...result.rows.map((row) => row.units)
+  );
 
   return (
     <table>
@@ -23,6 +36,7 @@ function ResultTable({ result }) {
           <th>Units Bar</th>
         </tr>
       </thead>
+
       <tbody>
         {result.rows.map((row) => (
           <tr key={row.variantId}>
@@ -31,13 +45,18 @@ function ResultTable({ result }) {
             <td>{row.size}</td>
             <td>{row.colour}</td>
             <td>{row.units}</td>
-            <td>{row.unitPrice}</td>
-            <td>{row.revenue}</td>
+
+            <td>{formatRupees(row.unitPrice)}</td>
+
+            <td>{formatRupees(row.revenue)}</td>
+
             <td>
               <div className="unit-bar">
                 <div
                   className="unit-bar-fill"
-                  style={{ width: `${(row.units / maxUnits) * 100}%` }}
+                  style={{
+                    width: `${(row.units / maxUnits) * 100}%`,
+                  }}
                 />
               </div>
             </td>
